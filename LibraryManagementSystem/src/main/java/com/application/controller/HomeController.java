@@ -23,7 +23,7 @@ public class HomeController
 	@Autowired
 	private LibraryServiceImplementation libraryServiceImpl;
 	
-	@PostMapping(value = "saveBook")
+	@PostMapping(value = "/saveBook")
 	public ResponseEntity<Library>  addBook(@RequestBody Library library)
 	{
 		libraryServiceImpl.addBook(library);
@@ -31,7 +31,7 @@ public class HomeController
 		return new ResponseEntity<Library>(library, HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "getBooks")
+	@GetMapping(value = "/getBooks")
 	public ResponseEntity<List<Library>>  getAllBooks()
 	{
 		List<Library> books = libraryServiceImpl.getAllBooks();
@@ -46,7 +46,7 @@ public class HomeController
 		return new ResponseEntity<List<Library>>(books, HttpStatus.OK);
 	}
 	
-	@PutMapping(value = "editBook")
+	@PutMapping(value = "/editBook")
 	public ResponseEntity<Library> updateBook(@RequestBody Library library, @RequestParam String bookId)
 	{
 		library.setBookId(bookId);
@@ -55,14 +55,14 @@ public class HomeController
 		return new ResponseEntity<Library>(library, HttpStatus.OK);
 	}
 	
-	@DeleteMapping("deleteBook")
+	@DeleteMapping("/deleteBook")
 	public ResponseEntity<String> deletBook(@RequestParam String bookId)
 	{
 		libraryServiceImpl.deletBook(bookId);
 		return new ResponseEntity<String>("Deleted Successfully", HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "getById")
+	@GetMapping(value = "/getById")
 	public ResponseEntity<Optional<Library>> getBookById(@RequestParam String bookId)
 	{
 		Optional<Library> books = libraryServiceImpl.getBookById(bookId);
@@ -82,7 +82,7 @@ public class HomeController
 		return new ResponseEntity<Optional<Library>>(books,HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "getByType")
+	@GetMapping(value = "/getByType")
 	public ResponseEntity<List<Library>> getBookByType(@RequestParam String id)
 	{
 		List<Library> books = libraryServiceImpl.getBookByGenre(id);
@@ -103,7 +103,7 @@ public class HomeController
 		return new ResponseEntity<List<Library>>(books,HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "getByName")
+	@GetMapping(value = "/getByName")
 	public ResponseEntity<List<Library>> getBookByName(@RequestParam String id)
 	{
 		List<Library> books = libraryServiceImpl.getBookByBookName(id);
